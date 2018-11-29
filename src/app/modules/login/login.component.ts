@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserCredentials } from '../user-credentials';
+import { UserCredentials } from '../../models/user-credentials';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,13 @@ export class LoginComponent implements OnInit {
     password: ""
   }
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
   validateCredentials() : void {
-    // this.loginService.validateLoginCredentials(this.loginCredentials);
+    this.loginService.validateUserCredentials(this.userCredentials);
     console.log(this.userCredentials);
   }
 }
