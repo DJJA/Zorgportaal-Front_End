@@ -9,11 +9,13 @@ import { LoginComponent } from './modules/login/login.component';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { UserEditorComponent } from './modules/user-editor/user-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UserEditorComponent
   ],
   imports: [
     BrowserModule,

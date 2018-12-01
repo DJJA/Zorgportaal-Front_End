@@ -1,0 +1,64 @@
+<form>
+  <!-- <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="user.username">
+  </div> -->
+  <div class="form-group">
+    <label for="fullName" class="control-label">Full name</label>
+    <input type="text" class="form-control" name="fullName" placeholder="Full name" [(ngModel)]="user.fullName">
+  </div>
+  <div class="form-group">
+    <label for="birthday" class="control-label">Birthday</label>
+    <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="birthday" [(ngModel)]="user.birthday" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select class="form-control" name="gender" [(ngModel)]="user.gender">
+      <option *ngFor="let gender of genderValues()" 
+          [value]="gender" 
+          [attr.selected]="user.gender===gender ? true : null">
+        {{gender}}
+      </option>
+    </select>
+  </div>
+
+  <hr/>
+  <div class="form-group">
+    <label for="role">Role</label>
+    <select class="form-control" name="role" [(ngModel)]="this.role">
+      <option *ngFor="let ro of getRoles()" 
+          [value]="ro" 
+          [attr.selected]="this.role===ro ? true : null">
+        {{ro}}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="this.role==='CLIENT'">
+    <div class="form-group">
+      <label for="carePlan" class="control-label">Care Plan</label>
+      <textarea rows="4" class="form-control" name="carePlan" placeholder="Care plan..." [(ngModel)]="client.carePlan"></textarea>
+    </div>
+  </div>
+
+  <div *ngIf="this.role==='MENTOR'">
+    <div class="form-group">
+      <label for="education" class="control-label">Education</label>
+      <input type="text" class="form-control" name="education" placeholder="Education" [(ngModel)]="mentor.education">
+    </div>
+  </div>
+
+
+
+
+
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Log in" (click)="saveUser()">
+  </div>
+
+</form>
