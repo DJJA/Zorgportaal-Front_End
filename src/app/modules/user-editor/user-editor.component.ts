@@ -3,6 +3,7 @@ import { User } from '../../models/user';
 import { Gender } from '../../models/gender';
 import { Client } from '../../models/Client';
 import { Mentor } from '../../models/Mentor';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-editor',
@@ -32,7 +33,7 @@ export class UserEditorComponent implements OnInit {
     return ['CLIENT', 'MENTOR'];
   }
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
   }
@@ -41,15 +42,27 @@ export class UserEditorComponent implements OnInit {
     if (this.role === 'CLIENT') {
       this.client.id = this.user.id;
       this.client.fullName = this.user.fullName;
-      this.client.birthday = this.user.birthday;
+      // this.client.birthday = this.user.birthday;
       this.client.gender = this.user.gender;
       console.log(this.client);
+
+      if (this.client.id === null || this.client.id === undefined) {
+        this.userService.addClient(this.client);
+      } else {
+        this.userService.updateClient(this.client);
+      }
     } else if (this.role === 'MENTOR') {
       this.mentor.id = this.user.id;
       this.mentor.fullName = this.user.fullName;
-      this.mentor.birthday = this.user.birthday;
+      // this.mentor.birthday = this.user.birthday;
       this.mentor.gender = this.user.gender;
       console.log(this.mentor);
+
+      if (this.mentor.id === null || this.mentor.id === undefined) {
+        this.userService.addMentor(this.mentor);
+      } else {
+        this.userService.updateMentor(this.mentor);
+      }
     } else {
       console.log('ERROR: Unknown role');
     }
