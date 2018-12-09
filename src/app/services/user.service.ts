@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Client } from '../models/Client';
-import { Mentor } from '../models/Mentor';
+import { Client } from '../models/client';
+import { Mentor } from '../models/mentor';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 // TODO: global http options and error default handling based on error status code
 const httpOptions = {
@@ -15,6 +16,22 @@ const httpOptions = {
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
+
+  getAllClients() : Observable<Client[]> {
+    return this.httpClient.get<Client[]>(environment.baseURL + "clients", httpOptions);
+  }
+
+  getAllMentors() : Observable<Mentor[]> {
+    return this.httpClient.get<Mentor[]>(environment.baseURL + "mentors", httpOptions);
+  }
+
+  getMentorById(id: number) : Observable<Mentor> {
+    return this.httpClient.get<Mentor>(environment.baseURL + "mentors/" + id, httpOptions);    
+  }
+
+  getClientById(id: number) : Observable<Client> {
+    return this.httpClient.get<Client>(environment.baseURL + "clients/" + id, httpOptions);
+  }
 
   addClient(client: Client) : void {
     let response = this.httpClient.post(environment.baseURL + "clients", client, httpOptions);
@@ -73,7 +90,7 @@ export class UserService {
             break;
           default:
             // Some unknown untracked error happened
-            console.log('Something went wrong (default)');
+            console.log('Something went wrong (default)' + err.status);
             break;
         }   
       }

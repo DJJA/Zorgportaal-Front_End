@@ -1,0 +1,26 @@
+<div id="lboxWithSearch">
+  <div class="row">
+      <div class="col-md-9">
+          <input type="text" placeholder="Search..."/>
+      </div>
+      <div class="col-md-3">
+          <button class="btn btn-default">Search</button>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <select id="lbox" size="15" (change)="selectDelegate.onSelectedItemChanged($event.target.value)">
+            <option *ngFor="let item of getSelectItems()" 
+              [value]="item.value">
+              {{item.text}}
+            </option>
+          </select>
+      </div>
+  </div>
+</div>
+
+<!-- <option *ngFor="let item of getSelectItems()" 
+              [value]="item.value" 
+              [attr.selected]="this.role===ro ? true : null">
+              {{item.text}}
+            </option> -->

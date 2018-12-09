@@ -1,6 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
 
+  <nav>
+    <a routerLink="/login">Log in</a>
+    <a routerLink="/create-user">Create new user</a>
+    <a routerLink="/user-list">Users</a>
+    <a routerLink="/mentor-list">Mentors</a>
+    <a routerLink="/client-list">Clients</a>
+  </nav>
   <router-outlet></router-outlet>
-<app-user-editor></app-user-editor>
+  <!-- <app-list-with-search [selectItems]=selectItems></app-list-with-search> -->
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit, ReflectiveKey } from '@angular/core';
 import { User } from '../../models/user';
 import { Gender } from '../../models/gender';
-import { Client } from '../../models/Client';
-import { Mentor } from '../../models/Mentor';
+import { Client } from '../../models/client';
+import { Mentor } from '../../models/mentor';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -16,12 +16,6 @@ export class UserEditorComponent implements OnInit {
   private client: Client = new Client;
   private mentor: Mentor = new Mentor;
   private role: string = 'CLIENT';
-  // private user: User = {
-  //   id: 0,
-  //   fullName: '',
-  //   birthday: null,
-  //   gender: 'FEMALE',
-  // };
 
   genderValues() : Array<string> {
     // var keys = Object.keys(Gender);

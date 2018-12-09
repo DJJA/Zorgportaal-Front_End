@@ -1,0 +1,14 @@
+<h2>Mentors</h2>
+<div class="row">
+  <div class="col-md-4">
+      <!-- @Html.Partial("~/Views/Partial/_ListboxWithSearch.cshtml", Model.ListItems) -->
+      <app-list-with-search [selectItems]=selectItems [selectDelegate]=this></app-list-with-search>
+  </div>
+  <div class="col-md-8">
+      <div class="row">
+          <!-- @Html.Partial("~/Views/Partial/_CrudButtons.cshtml") -->
+          <app-crud-buttons></app-crud-buttons>
+      </div>
+        <app-mentor-view [mentor]=mentor></app-mentor-view>
+  </div>
+</div>
