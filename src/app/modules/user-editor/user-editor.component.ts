@@ -12,10 +12,10 @@ import { UserService } from '../../services/user.service';
 })
 export class UserEditorComponent implements OnInit {
 
-  private user: User = new User;
-  private client: Client = new Client;
-  private mentor: Mentor = new Mentor;
-  private role: string = 'CLIENT';
+  public user: User = new User;
+  public client: Client = new Client;
+  public mentor: Mentor = new Mentor;
+  public role: string = 'CLIENT';
 
   genderValues() : Array<string> {
     // var keys = Object.keys(Gender);
