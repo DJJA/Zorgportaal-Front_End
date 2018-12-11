@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from '../../../models/select-item';
-
-export interface SelectDelegate {
-  onSelectedItemChanged(value: string) : void;
-}
+import { SelectDelegate } from 'src/app/delegates/select-delegate';
 
 @Component({
   selector: 'app-list-with-search',

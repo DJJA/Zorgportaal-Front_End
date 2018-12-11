@@ -1,3 +1,4 @@
+<h2>{{getTitle()}}</h2>
 <form>
   <!-- <div class="form-group">
     <label for="username">Username</label>
@@ -27,8 +28,8 @@
     </select>
   </div>
 
-  <hr/>
-  <div class="form-group">
+  <!-- <hr/> -->
+  <!-- <div class="form-group">
     <label for="role">Role</label>
     <select class="form-control" name="role" [(ngModel)]="this.role">
       <option *ngFor="let ro of getRoles()" 
@@ -37,7 +38,7 @@
         {{ro}}
       </option>
     </select>
-  </div>
+  </div> -->
 
   <div *ngIf="this.role==='CLIENT'">
     <div class="form-group">

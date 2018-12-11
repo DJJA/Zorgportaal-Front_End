@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CrudButtonsDelegate } from 'src/app/delegates/crud-buttons-delegate';
 
 @Component({
   selector: 'app-crud-buttons',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudButtonsComponent implements OnInit {
 
+  @Input() crudButtonsDelegate: CrudButtonsDelegate;
+  
   constructor() { }
 
   ngOnInit() {

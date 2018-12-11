@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from '../../models/select-item';
-import { SelectDelegate } from '../partial/list-with-search/list-with-search.component';
+import { SelectDelegate } from '../../delegates/select-delegate';
 import { Mentor } from '../../models/mentor';
 import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CrudButtonsDelegate } from 'src/app/delegates/crud-buttons-delegate';
 
 @Component({
   selector: 'app-mentor-list',
   templateUrl: './mentor-list.component.html',
   styleUrls: ['./mentor-list.component.scss']
 })
-export class MentorListComponent implements OnInit, SelectDelegate {
+export class MentorListComponent implements OnInit, SelectDelegate, CrudButtonsDelegate {
 
   selectItems: SelectItem[] = [
     { value: '0', text: 'aap0' },
@@ -18,11 +19,13 @@ export class MentorListComponent implements OnInit, SelectDelegate {
     { value: '2', text: 'aap2' }
   ];
 
+  private index: number = -1;
 
   onSelectedItemChanged(value: string) : void {
     console.log('dit is de value: ' + value);
     console.log('userSErvice: ' + this.userService);
     
+    this.index = Number(value);
     this.userService.getMentorById(Number(value)).subscribe(
       data => {
         this.mentor = data;
@@ -47,6 +50,20 @@ export class MentorListComponent implements OnInit, SelectDelegate {
     );
   }
 
+  onAddClick(): void {
+    let newUrl = window.location.protocol + '//' + window.location.host + '/create-user/' + null + '/MENTOR';
+    window.location.href = newUrl;
+
+  }
+  onEditClick(): void {
+    if (this.index === -1) return;
+    let newUrl = window.location.protocol + '//' + window.location.host + '/create-user/' + this.index + '/MENTOR';
+    window.location.href = newUrl;
+  }
+  onRemoveClick(): void {
+    
+  }
+
   mentor: Mentor = {
     id: 1,
     fullName: '....',
@@ -55,7 +72,9 @@ export class MentorListComponent implements OnInit, SelectDelegate {
     education: '........'
   };
   
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService
+    ) { }
 
   ngOnInit() {
     this.loadMentors();

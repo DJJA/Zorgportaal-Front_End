@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from '../../models/select-item';
-import { SelectDelegate } from '../partial/list-with-search/list-with-search.component';
+import { SelectDelegate } from '../../delegates/select-delegate';
 
 @Component({
   selector: 'app-user-list',

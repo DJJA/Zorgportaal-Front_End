@@ -7,7 +7,7 @@
   <div class="col-md-8">
       <div class="row">
           <!-- @Html.Partial("~/Views/Partial/_CrudButtons.cshtml") -->
-          <app-crud-buttons></app-crud-buttons>
+          <app-crud-buttons [crudButtonsDelegate]=this></app-crud-buttons>
       </div>
       <app-client-view [client]=client></app-client-view>
   </div>

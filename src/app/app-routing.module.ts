@@ -9,8 +9,7 @@ import { ClientListComponent } from './modules/client-list/client-list.component
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },          // Default route
   { path: 'login', component: LoginComponent },
-  { path: 'create-user', component: UserEditorComponent },
-  { path: 'user-list', component: UserListComponent },
+  { path: 'create-user/:id/:role', component: UserEditorComponent },
   { path: 'mentor-list', component: MentorListComponent },
   { path: 'client-list', component: ClientListComponent }
 ];

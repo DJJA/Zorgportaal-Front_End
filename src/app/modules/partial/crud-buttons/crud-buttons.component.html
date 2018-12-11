@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-4">
-    <button id="btnCrudAdd" class="btn btn-default">Add</button>
+    <button id="btnCrudAdd" class="btn btn-default" (click)="crudButtonsDelegate.onAddClick()">Add</button>
   </div>
   <div class="col-md-4">
-    <button id="btnCrudEdit" class="btn btn-default">Edit</button>
+    <button id="btnCrudEdit" class="btn btn-default" (click)="crudButtonsDelegate.onEditClick()">Edit</button>
   </div>
   <div class="col-md-4">
-    <button id="btnCrudDelete" class="btn btn-default">Remove</button>
+    <button id="btnCrudDelete" class="btn btn-default" (click)="crudButtonsDelegate.onRemoveClick()">Remove</button>
   </div>
 </div>

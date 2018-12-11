@@ -67,7 +67,30 @@ export class UserService {
   }
 
   updateClient(client: Client) : void {
+    let response = this.httpClient.put(environment.baseURL + "clients/" + client.id, client, httpOptions);
 
+    response.subscribe(
+      data => {
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => { // Could get error message from server; it's sends an error object with the resource name, error code and error message
+        switch(err.status) {
+          case 0:
+            // Unknown error, happens when there's no connection
+            // console.log('Could not reach authentication server. Please try again later.');
+            console.log('Something went wrong');
+            break;
+          case 401:
+            // Unauthorized
+            console.log('You are not authorized');
+            break;
+          default:
+            // Some unknown untracked error happened
+            console.log('Something went wrong (default)' + err.status);
+            break;
+        }   
+      }
+    );
   }
 
   addMentor(mentor: Mentor) : void {
@@ -98,6 +121,29 @@ export class UserService {
   }
 
   updateMentor(mentor: Mentor) : void {
+    let response = this.httpClient.put(environment.baseURL + "mentors/" + mentor.id, mentor, httpOptions);
 
+    response.subscribe(
+      data => {
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => { // Could get error message from server; it's sends an error object with the resource name, error code and error message
+        switch(err.status) {
+          case 0:
+            // Unknown error, happens when there's no connection
+            // console.log('Could not reach authentication server. Please try again later.');
+            console.log('Something went wrong');
+            break;
+          case 401:
+            // Unauthorized
+            console.log('You are not authorized');
+            break;
+          default:
+            // Some unknown untracked error happened
+            console.log('Something went wrong (default)' + err.status);
+            break;
+        }   
+      }
+    );
   }
 }

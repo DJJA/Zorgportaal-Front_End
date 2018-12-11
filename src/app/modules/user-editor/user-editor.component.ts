@@ -4,6 +4,7 @@ import { Gender } from '../../models/gender';
 import { Client } from '../../models/client';
 import { Mentor } from '../../models/mentor';
 import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-editor',
@@ -17,6 +18,8 @@ export class UserEditorComponent implements OnInit {
   public mentor: Mentor = new Mentor;
   public role: string = 'CLIENT';
 
+  public title: string = 'User Editor';
+
   genderValues() : Array<string> {
     // var keys = Object.keys(Gender);
     // return keys.slice(keys.length / 2);
@@ -27,9 +30,45 @@ export class UserEditorComponent implements OnInit {
     return ['CLIENT', 'MENTOR'];
   }
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute
+    ) {}
 
   ngOnInit() {
+    // console.log('id: ' + this.activatedRoute.snapshot.paramMap.get('id'));
+    // console.log('role: ' + this.activatedRoute.snapshot.paramMap.get('role'));
+
+    let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.client.id = id;
+    this.mentor.id = id;
+    this.role = this.activatedRoute.snapshot.paramMap.get('role');
+
+    // Load user data if id is set
+    if (id === null || id === undefined) return;
+    if (this.role === 'CLIENT') {
+      this.userService.getClientById(id).subscribe(
+        data => {
+          this.client = data;
+          this.user = data;
+        }        
+      );
+    } else if (this.role === 'MENTOR') {
+      this.userService.getMentorById(id).subscribe(
+        data => {
+          this.mentor = data;
+          this.user = data;
+        }
+      );
+    }
+  }
+
+  getTitle() : string {
+    if (this.user.id === null || this.user.id === undefined) {
+      return 'Add new ' + this.role.toString().toLowerCase();
+    } else {
+      return 'Edit ' + this.user.fullName;
+    }
   }
 
   saveUser() : void {

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from '../../models/select-item';
-import { SelectDelegate } from '../partial/list-with-search/list-with-search.component';
+import { SelectDelegate } from '../../delegates/select-delegate';
 import { UserService } from '../../services/user.service';
 import { Client } from '../../models/client';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CrudButtonsDelegate } from 'src/app/delegates/crud-buttons-delegate';
 
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
   styleUrls: ['./client-list.component.scss']
 })
-export class ClientListComponent implements OnInit {
+export class ClientListComponent implements OnInit, SelectDelegate, CrudButtonsDelegate {
   selectItems: SelectItem[] = [
     { value: '0', text: 'aap0' },
     { value: '1', text: 'aap1' },
@@ -25,10 +26,12 @@ export class ClientListComponent implements OnInit {
     carePlan: '.....'
   };
 
+  private index: number = -1;
 
   onSelectedItemChanged(value: string) {
     console.log('dit is de value: ' + value);
-    this.userService.getClientById(Number(value)).subscribe(
+    this.index = Number(value);
+    this.userService.getClientById(this.index).subscribe(
       data => {
         this.client = data;
       },
@@ -50,6 +53,24 @@ export class ClientListComponent implements OnInit {
         }
       } 
     )
+  }
+
+  onAddClick(): void {
+    let newUrl = window.location.protocol + '//' + window.location.host + '/create-user/' + null + '/CLIENT';
+    window.location.href = newUrl;
+  }
+  onEditClick(): void {
+    if (this.index === -1) return;
+    let newUrl = window.location.protocol + '//' + window.location.host + '/create-user/' + this.index + '/CLIENT';
+    window.location.href = newUrl;
+  }
+  onRemoveClick(): void {
+    
+  }
+
+  getCurrentIndex() : number {
+    console.log(this.index);
+    return this.index;
   }
 
   
