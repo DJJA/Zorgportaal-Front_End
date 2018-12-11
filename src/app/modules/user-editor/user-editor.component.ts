@@ -39,13 +39,16 @@ export class UserEditorComponent implements OnInit {
     // console.log('id: ' + this.activatedRoute.snapshot.paramMap.get('id'));
     // console.log('role: ' + this.activatedRoute.snapshot.paramMap.get('role'));
 
-    let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.client.id = id;
-    this.mentor.id = id;
+    
     this.role = this.activatedRoute.snapshot.paramMap.get('role');
 
+    let idParam = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log("param: " + idParam);
     // Load user data if id is set
-    if (id === null || id === undefined) return;
+    if (idParam === null || idParam === undefined || idParam === 'null') return;
+    let id = Number(idParam);
+    this.client.id = id;
+    this.mentor.id = id;
     if (this.role === 'CLIENT') {
       this.userService.getClientById(id).subscribe(
         data => {
@@ -64,6 +67,7 @@ export class UserEditorComponent implements OnInit {
   }
 
   getTitle() : string {
+    console.log('id ' + this.user.id);
     if (this.user.id === null || this.user.id === undefined) {
       return 'Add new ' + this.role.toString().toLowerCase();
     } else {
