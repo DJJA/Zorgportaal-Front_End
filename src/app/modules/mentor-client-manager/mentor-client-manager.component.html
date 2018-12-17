@@ -3,12 +3,12 @@
   <div class="col-md-4">
       <!-- @Html.Partial("~/Views/Partial/_ListboxWithSearch.cshtml", Model.ListItems) -->
       <h3>{{mentor.fullName}}'s Clients</h3>
-      <app-list-with-search [selectItems]=selectItems [selectDelegate]=this></app-list-with-search>
+      <app-list-with-search [selectItems]=null [selectDelegate]=null></app-list-with-search>
       <button class="btn btn-default" (click)="removeClientFromMentor">Remove</button>
   </div>
   <div class="col-md-8">
       <h3>Clients</h3>
-      <app-list-with-search [selectItems]=selectItems [selectDelegate]=this></app-list-with-search>
+      <app-list-with-search [selectItems]=null [selectDelegate]=null></app-list-with-search>
       <button class="btn btn-default" (click)="addClientToMentor">Add</button>
   </div>
 </div>
