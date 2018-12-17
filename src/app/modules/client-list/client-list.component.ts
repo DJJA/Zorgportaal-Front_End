@@ -23,7 +23,8 @@ export class ClientListComponent implements OnInit, SelectDelegate, CrudButtonsD
     fullName: '......',
     birthday: new Date(),
     gender: 'MALE',
-    carePlan: '.....'
+    carePlan: '.....',
+    mentors: []
   };
 
   private index: number = -1;

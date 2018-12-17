@@ -1,3 +1,9 @@
 <app-user-view [user]=client></app-user-view>
 
 <p><strong>Care plan:</strong> {{client.carePlan}}</p>
+
+
+    <h4>Mentors:</h4>
+    <ul>
+        <li *ngFor="let mentor of client.mentors">{{mentor.fullName}}</li>
+    </ul>

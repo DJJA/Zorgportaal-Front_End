@@ -18,6 +18,7 @@ import { ClientListComponent } from './modules/client-list/client-list.component
 import { MentorViewComponent } from './modules/views/mentor-view/mentor-view.component';
 import { ClientViewComponent } from './modules/views/client-view/client-view.component';
 import { UserViewComponent } from './modules/views/user-view/user-view.component';
+import { MentorClientManagerComponent } from './modules/mentor-client-manager/mentor-client-manager.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserViewComponent } from './modules/views/user-view/user-view.component
     ClientListComponent,
     MentorViewComponent,
     ClientViewComponent,
-    UserViewComponent
+    UserViewComponent,
+    MentorClientManagerComponent
   ],
   imports: [
     BrowserModule,
