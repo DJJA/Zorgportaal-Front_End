@@ -33,6 +33,18 @@ export class UserService {
     return this.httpClient.get<Client>(environment.baseURL + "clients/" + id, httpOptions);
   }
 
+  getClientsByMentorId(id: number) : Observable<Client[]> {
+    return this.httpClient.get<Client[]>(environment.baseURL + "mentors/" + id + "/clients", httpOptions)
+  }
+
+  addClientToMentor(mentorId: number, client: Client) : Observable<any> {
+    return this.httpClient.post<any>(environment.baseURL + "mentors/" + mentorId + "/clients", client, httpOptions);
+  }
+
+  removeClientFromMentor(mentorId: number, clientId: number) : Observable<any> {
+    return this.httpClient.delete(environment.baseURL + "mentors/" + mentorId + "/clients/" + clientId, httpOptions);
+  }
+
   addClient(client: Client) : void {
     let response = this.httpClient.post(environment.baseURL + "clients", client, httpOptions);
 

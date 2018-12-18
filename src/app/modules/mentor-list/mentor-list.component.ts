@@ -86,6 +86,7 @@ export class MentorListComponent implements OnInit, SelectDelegate, CrudButtonsD
         console.log(data);
 
         this.selectItems = [];
+        if (data === null) return;
         for( let mentor of data) {
           this.selectItems.push({value: mentor.id.toString(), text: mentor.fullName});
         }
